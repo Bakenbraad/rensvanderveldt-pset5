@@ -29,6 +29,6 @@ public class TodoList {
     }
 
     public void removeList(long masterid){
-        
+
     }
 }
