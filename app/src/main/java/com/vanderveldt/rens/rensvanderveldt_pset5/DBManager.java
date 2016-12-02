@@ -39,7 +39,7 @@ public class DBManager {
         database.insert(SQLMaster.TABLE_NAME_MASTER, null, contentValue);
     }
 
-    public void insertmitem(String name, Integer masterID) {
+    public void insertItem(String name, long masterID) {
         ContentValues contentValue = new ContentValues();
         contentValue.put(SQLMaster.ITEM_TITLE, name);
         contentValue.put(SQLMaster.MASTER_KEY, masterID);
@@ -56,8 +56,8 @@ public class DBManager {
         }
         return cursor;
     }
-    public Cursor fetchItemFromMaster(Integer masterID) {
-        Cursor cursor = database.rawQuery("SELECT * FROM " + SQLMaster.TABLE_NAME_ITEMS + " WHERE " + SQLMaster.MASTER_KEY + " = ?", new String[] {masterID.toString()});
+    public Cursor fetchItemFromMaster(long masterID) {
+        Cursor cursor = database.rawQuery("SELECT * FROM " + SQLMaster.TABLE_NAME_ITEMS + " WHERE " + SQLMaster.MASTER_KEY + " = ?", new String[] {String.valueOf(masterID)});
         if (cursor != null) {
             cursor.moveToFirst();
         }
@@ -74,7 +74,7 @@ public class DBManager {
         return i;
     }
 
-    public int update(long _id, String masterTitle) {
+    public int updateMaster(long _id, String masterTitle) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(SQLMaster.MASTER_TITLE, masterTitle);
         int i = database.update(SQLMaster.TABLE_NAME_MASTER, contentValues, SQLMaster._ID + " = " + _id, null);

@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".addMaster" />
-        <activity android:name=".EditTodo"></activity>
+        <activity android:name=".EditTodo" />
+        <activity android:name=".ChoreAdd"></activity>
     </application>
 
 </manifest>

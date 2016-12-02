@@ -1,5 +1,6 @@
 package com.vanderveldt.rens.rensvanderveldt_pset5;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,14 +16,16 @@ public class addMaster extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_master);
         manager = TodoInstanceManager.getInstance();
+        manager.setManager(this);
 
-        EditText editText = (EditText) findViewById(R.id.masterTitleED);
+        editText = (EditText) findViewById(R.id.masterTitleED);
     }
 
 
     public void saveMaster(View view) {
         String title = editText.getText().toString();
         manager.addMaster(title);
-        finish();
+        Intent goHome = new Intent(this, MainActivity.class);
+        startActivity(goHome);
     }
 }

@@ -11,13 +11,13 @@ public class SQLMaster extends SQLiteOpenHelper {
     public static final String TABLE_NAME_MASTER = "MASTERLIST";
 
     // Table Name
-    public static final String TABLE_NAME_ITEMS = "MASTERLIST";
+    public static final String TABLE_NAME_ITEMS = "ITEMLIST";
 
     // Table columns
     public static final String _ID = "_id";
-    public static final String MASTER_TITLE = "masterTitle";
-    public static final String ITEM_TITLE = "itemTitle";
-    public static final String MASTER_KEY = "masterKey";
+    public static final String MASTER_TITLE = "MasterName";
+    public static final String ITEM_TITLE = "ItemName";
+    public static final String MASTER_KEY = "ItemMaster";
 
 
 
@@ -28,10 +28,8 @@ public class SQLMaster extends SQLiteOpenHelper {
     static final int DB_VERSION = 1;
 
     // Creating table querys
-    private static final String CREATE_TABLE_MASTER = "create table " + TABLE_NAME_MASTER + "(" + _ID
-            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + MASTER_TITLE + " TEXT NOT NULL);";
-    private static final String CREATE_TABLE_ITEM = "create table " + TABLE_NAME_ITEMS + "(" + MASTER_KEY + " INTEGER PRIMARY," + _ID
-            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + ITEM_TITLE + " TEXT NOT NULL);";
+    private static final String CREATE_TABLE_MASTER = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_MASTER + "(" + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + MASTER_TITLE + " TEXT NOT NULL);";
+    private static final String CREATE_TABLE_ITEM = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_ITEMS + "(" + MASTER_KEY + " INTEGER, " + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + ITEM_TITLE + " TEXT NOT NULL);";
 
 
     public SQLMaster(Context context) {

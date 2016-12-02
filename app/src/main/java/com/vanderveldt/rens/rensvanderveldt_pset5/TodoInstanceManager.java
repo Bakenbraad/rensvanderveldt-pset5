@@ -13,44 +13,43 @@ public class TodoInstanceManager {
     Context c;
     DBManager dbManager;
 
-    String [] MasterTitles = {""};
-    String [] MasterItems;
-
     public static TodoInstanceManager getInstance() {
         return ourInstance;
     }
 
     private TodoInstanceManager() {
-
-
     }
 
-    public String[] getMasterTitles(){
-        Cursor masters = dbManager.fetchMaster();
-
-        for(int i = 0; i < masters.getCount(); i ++){
-            MasterTitles[i] = masters.getString(i);
-        }
-        masters.close();
-        return MasterTitles;
+    public Cursor getMasterTitles(){
+        return dbManager.fetchMaster();
     }
 
-    public String[] getMasterItems(int masterID) {
-        Cursor items = dbManager.fetchItemFromMaster(masterID);
-        for(int i = 0; i < items.getCount(); i ++){
-            MasterItems[i] = items.getString(i);
-        }
-        items.close();
-        return MasterItems;
+    public Cursor getMasterItems(long masterID) {
+        return dbManager.fetchItemFromMaster(masterID);
     }
 
     public void addMaster(String name){
         dbManager.insertmaster(name);
     }
 
+    public void addItem(String name, long master) { dbManager.insertItem(name, master); }
+
     public void setManager(Context c) {
         this.c = c;
-        DBManager dbManager = new DBManager(get);
+        dbManager = new DBManager(c);
+        dbManager.open();
+    }
+
+    public void updateItem(long _id, String title, long master_id){
+        dbManager.updateItem(_id, title, master_id);
+    }
+
+    public void deleteItem(long _id){
+        dbManager.deleteItem(_id);
+    }
+
+    public void deleteMaster(long _id){
+        dbManager.deleteMaster(_id);
     }
 
 }
