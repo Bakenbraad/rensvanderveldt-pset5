@@ -13,7 +13,7 @@ public class EditTodo extends AppCompatActivity {
     private long _id;
     private long master_id;
 
-    private TodoInstanceManager dbManager;
+    private TodoInstanceManager manager;
 
     EditText todoText;
 
@@ -23,8 +23,8 @@ public class EditTodo extends AppCompatActivity {
 
         setTitle("Edit Chore");
         setContentView(R.layout.activity_edit_todo);
-        dbManager = TodoInstanceManager.getInstance();
-        dbManager.setManager(this);
+        manager = TodoInstanceManager.getInstance();
+        manager.setManager(this);
 
 
         todoText = (EditText) findViewById(R.id.item_name);
@@ -46,6 +46,7 @@ public class EditTodo extends AppCompatActivity {
     // Back function
     public void returnHome() {
         Intent home_intent = new Intent(getApplicationContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        home_intent.putExtra("id", master_id);
         startActivity(home_intent);
         finish();
     }
@@ -57,18 +58,21 @@ public class EditTodo extends AppCompatActivity {
             Toast.makeText(this, "Please enter a To-Do", Toast.LENGTH_SHORT).show();
         }
         else{
-            dbManager.updateItem(_id, title, master_id);
+            manager.updateItem(_id, title);
             Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
             this.returnHome();
         }
     }
 
     public void deleteChore(View view) {
-        dbManager.deleteItem(_id);
+        manager.deleteItem(_id);
         Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
         this.returnHome();
     }
 
     public void completeChore(View view) {
+        manager.completeItem(_id);
+        Toast.makeText(this, "Good job!", Toast.LENGTH_SHORT).show();
+        this.returnHome();
     }
 }

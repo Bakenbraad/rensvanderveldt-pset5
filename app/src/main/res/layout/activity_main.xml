@@ -13,54 +13,30 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true">
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
             android:layout_height="39dp">
 
             <TextView
                 android:text="Todo Lists"
-                android:layout_width="match_parent"
+                android:layout_width="354dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/ListsTV"
                 android:textSize="20sp"
-                android:gravity="center"
-                android:layout_weight="1" />
-
-            <TextView
-                android:text="Chores"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/ItemsTV"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="395dp">
-
-            <ListView
-                android:layout_width="178dp"
-                android:layout_height="match_parent"
-
-                android:id="@+id/masterList"/>
-
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/itemList"/>
+                android:textColor="#000000"
+                android:gravity="center" />
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="55dp"
             android:weightSum="1">
 
             <Button
@@ -76,6 +52,25 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/addChorebtn"
                 android:onClick="addChore"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:layout_width="178dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:id="@+id/masterList"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:id="@+id/itemList"/>
+
         </LinearLayout>
 
     </LinearLayout>

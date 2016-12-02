@@ -18,6 +18,7 @@ public class SQLMaster extends SQLiteOpenHelper {
     public static final String MASTER_TITLE = "MasterName";
     public static final String ITEM_TITLE = "ItemName";
     public static final String MASTER_KEY = "ItemMaster";
+    public static final String COMPLETED = "completed";
 
 
 
@@ -29,7 +30,7 @@ public class SQLMaster extends SQLiteOpenHelper {
 
     // Creating table querys
     private static final String CREATE_TABLE_MASTER = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_MASTER + "(" + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + MASTER_TITLE + " TEXT NOT NULL);";
-    private static final String CREATE_TABLE_ITEM = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_ITEMS + "(" + MASTER_KEY + " INTEGER, " + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + ITEM_TITLE + " TEXT NOT NULL);";
+    private static final String CREATE_TABLE_ITEM = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_ITEMS + "(" + MASTER_KEY + " INTEGER, " + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + ITEM_TITLE + " TEXT NOT NULL, " + COMPLETED + " INTEGER);";
 
 
     public SQLMaster(Context context) {

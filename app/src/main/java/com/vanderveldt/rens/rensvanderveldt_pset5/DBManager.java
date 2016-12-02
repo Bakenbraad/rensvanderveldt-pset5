@@ -66,10 +66,9 @@ public class DBManager {
 
     // Update
 
-    public int updateItem(long _id, String itemTitle, long masterID) {
+    public int updateItem(long _id, String itemTitle) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(SQLMaster.ITEM_TITLE, itemTitle);
-        contentValues.put(SQLMaster.MASTER_KEY, masterID);
         int i = database.update(SQLMaster.TABLE_NAME_ITEMS, contentValues, SQLMaster._ID + " = " + _id, null);
         return i;
     }
@@ -78,6 +77,13 @@ public class DBManager {
         ContentValues contentValues = new ContentValues();
         contentValues.put(SQLMaster.MASTER_TITLE, masterTitle);
         int i = database.update(SQLMaster.TABLE_NAME_MASTER, contentValues, SQLMaster._ID + " = " + _id, null);
+        return i;
+    }
+
+    public int completeItem(long _id){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SQLMaster.COMPLETED, 1);
+        int i = database.update(SQLMaster.TABLE_NAME_ITEMS, contentValues, SQLMaster._ID + " = " + _id, null);
         return i;
     }
 

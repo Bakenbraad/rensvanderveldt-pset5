@@ -21,6 +21,8 @@ public class ChoreAdd extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setTitle("Add Chore");
         setContentView(R.layout.activity_chore_add);
 
         // Open connection.

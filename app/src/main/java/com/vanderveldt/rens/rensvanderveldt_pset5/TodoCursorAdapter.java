@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 /**
@@ -31,10 +33,15 @@ public class TodoCursorAdapter extends CursorAdapter {
         // Find fields to populate in inflated template
         TextView tvTitle = (TextView) view.findViewById(R.id.title_row_item);
         TextView tvID = (TextView) view.findViewById(R.id.id_row_item);
+        LinearLayout llSimpleItem = (LinearLayout) view.findViewById(R.id.simple_item);
 
         // Extract properties from cursor
         String title = cursor.getString(cursor.getColumnIndexOrThrow("ItemName"));
         long id = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+        int completed = cursor.getInt(cursor.getColumnIndex("completed"));
+        if (completed > 0){
+            llSimpleItem.setBackgroundColor(0xffccff99);
+        }
 
         // Populate fields with extracted properties
         tvTitle.setText(title);

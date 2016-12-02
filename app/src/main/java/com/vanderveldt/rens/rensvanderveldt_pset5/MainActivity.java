@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("List management");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+
         // Read values from the "savedInstanceState"
         long id_onRestore = savedInstanceState.getLong("id");
         itemList = manager.getMasterItems(id_onRestore);
@@ -142,8 +144,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onDestroy(){
+        manager.closeManager();
+        super.onDestroy();
     }
 
     public void addChore(View view) {
@@ -157,4 +160,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(goToAddMaster);
 
     }
+
+
 }

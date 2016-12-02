@@ -39,9 +39,12 @@ public class TodoInstanceManager {
         dbManager = new DBManager(c);
         dbManager.open();
     }
+    public void closeManager(){
+        dbManager.close();
+    }
 
-    public void updateItem(long _id, String title, long master_id){
-        dbManager.updateItem(_id, title, master_id);
+    public void updateItem(long _id, String title){
+        dbManager.updateItem(_id, title);
     }
 
     public void deleteItem(long _id){
@@ -50,6 +53,10 @@ public class TodoInstanceManager {
 
     public void deleteMaster(long _id){
         dbManager.deleteMaster(_id);
+    }
+
+    public void completeItem(long _id) {
+        dbManager.completeItem(_id);
     }
 
 }
