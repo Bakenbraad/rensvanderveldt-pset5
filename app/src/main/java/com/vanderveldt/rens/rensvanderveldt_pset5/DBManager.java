@@ -6,12 +6,10 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.vanderveldt.rens.rensvanderveldt_pset5.SQLMaster;
-
 
 // Create Read Update and Delete operations are preformed here.
 
-public class TodoManager {
+public class DBManager {
 
     private SQLMaster dbHelper;
 
@@ -19,22 +17,19 @@ public class TodoManager {
 
     private SQLiteDatabase database;
 
-    public TodoManager(Context c) {
+    public DBManager(Context c) {
         context = c;
     }
 
-    public TodoManager open() throws SQLException {
+    public DBManager open() throws SQLException {
         dbHelper = new SQLMaster(context);
         database = dbHelper.getWritableDatabase();
         return this;
     }
 
-
-
     public void close() {
         dbHelper.close();
     }
-
 
     // Create
 
@@ -71,7 +66,7 @@ public class TodoManager {
 
     // Update
 
-    public int updateItem(long _id, String itemTitle, Integer masterID) {
+    public int updateItem(long _id, String itemTitle, long masterID) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(SQLMaster.ITEM_TITLE, itemTitle);
         contentValues.put(SQLMaster.MASTER_KEY, masterID);
@@ -90,6 +85,7 @@ public class TodoManager {
 
     public void deleteMaster(long _id) {
         database.delete(SQLMaster.TABLE_NAME_MASTER, SQLMaster._ID + "=" + _id, null);
+        database.delete(SQLMaster.TABLE_NAME_ITEMS, SQLMaster.MASTER_KEY + "=" + _id, null);
     }
     public void deleteItem(long _id) {
         database.delete(SQLMaster.TABLE_NAME_ITEMS, SQLMaster._ID + "=" + _id, null);

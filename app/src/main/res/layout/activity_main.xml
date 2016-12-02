@@ -10,8 +10,74 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.vanderveldt.rens.rensvanderveldt_pset5.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="39dp">
+
+            <TextView
+                android:text="Todo Lists"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ListsTV"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="Chores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ItemsTV"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="395dp">
+
+            <ListView
+                android:layout_width="178dp"
+                android:layout_height="match_parent"
+
+                android:id="@+id/masterList"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/itemList"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <Button
+                android:text="Add List"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/addListbtn"
+                android:onClick="addList"/>
+
+            <Button
+                android:text="Add Chore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addChorebtn"
+                android:onClick="addChore"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>
